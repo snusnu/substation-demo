@@ -5,7 +5,7 @@ class Demo
     include Models
 
     INSERT_PERSON_DDL = <<-SQL
-      INSERT INTO "people" ("id", "name") VALUES (?, ?)
+      INSERT INTO "people" ("name") VALUES (?)
     SQL
 
     attr_reader :db
@@ -27,7 +27,7 @@ class Demo
       connection = DataObjects::Connection.new(@uri)
 
       command = connection.create_command(INSERT_PERSON_DDL)
-      command.execute_non_query(person.id, person.name)
+      command.execute_non_query(person.name)
 
       connection.close
     end

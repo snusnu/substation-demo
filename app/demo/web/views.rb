@@ -23,7 +23,6 @@ class Demo
         NEW = Views.page(<<-HTML)
           <div ng-controller="PeopleController">
             <form novalidate class="simple-form">
-              Id: <input type="text" ng-model="person.id" /><br />
               Name: <input type="text" ng-model="person.name" /><br />
               <button ng-click="update(person)">SAVE</button>
             </form>
