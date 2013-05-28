@@ -24,11 +24,15 @@ class Demo
     end
 
     def insert_person(person)
+      insert(INSERT_PERSON_DDL, person.name)
+    end
+
+    private
+
+    def insert(ddl, *args)
       connection = DataObjects::Connection.new(@uri)
-
-      command = connection.create_command(INSERT_PERSON_DDL)
-      command.execute_non_query(person.name)
-
+      command = connection.create_command(ddl)
+      command.execute_non_query(*args)
       connection.close
     end
   end
