@@ -4,7 +4,7 @@ class Demo
     module Sanitizers
 
       ID_TRAP = Ducktrap.build do
-        extern do
+        custom do
           forward { |input| input.merge(:id => nil) }
           inverse { |input| input = input.dup; input.delete(:id); input }
         end
