@@ -36,7 +36,7 @@ class Demo
 
     class App < Sinatra::Base
 
-      ROOT = Pathname(File.expand_path('../../../..', __FILE__))
+      ROOT = Pathname(File.expand_path('../../..', __FILE__))
 
       set :root, ROOT
 

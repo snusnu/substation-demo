@@ -1,4 +1,7 @@
-$LOAD_PATH.unshift(File.expand_path('../app', __FILE__))
+require 'pp'
+pp $LOAD_PATH
+puts File.dirname(__FILE__)
+$LOAD_PATH.unshift(File.dirname(__FILE__))
 
 require 'demo/web/routes'
 
