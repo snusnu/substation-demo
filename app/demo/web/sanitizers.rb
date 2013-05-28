@@ -13,9 +13,9 @@ class Demo
       NEW_PERSON = Ducktrap.build do
         primitive(Hash)
         hash_transform do
-          dump_key(:name) do
-            fetch_key('name')
+          fetch_key('name') do
             primitive(String)
+            dump_key(:name)
           end
         end
         add(ID_TRAP)
