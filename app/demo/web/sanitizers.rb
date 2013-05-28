@@ -6,7 +6,7 @@ class Demo
       ID_TRAP = Ducktrap.build do
         extern do
           forward { |input| input.merge(:id => nil) }
-          inverse { |input| input = input.dup; input.delete(:id) }
+          inverse { |input| input = input.dup; input.delete(:id); input }
         end
       end
 
