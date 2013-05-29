@@ -7,11 +7,11 @@ class Demo
         def name
           "Presenting: #{super}"
         end
-      end
 
-      class People < Presenter::Collection
-        member(Presenters::Person)
-        alias_method :people, :each
+        class Collection < Presenter::Collection
+          member(Person)
+          alias_method :people, :each
+        end
       end
     end
   end
