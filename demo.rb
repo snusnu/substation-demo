@@ -42,12 +42,4 @@ class Demo
   ENV = Environment.new(Storage.new(Demo::DB))
 
   DB.finalize
-
-  module Models
-
-    # seed some data
-    # ENV.storage.insert_person Person.new(:id => 1, :name => 'John')
-    # ENV.storage.insert_person Person.new(:id => 2, :name => 'Jane')
-
-  end
 end
