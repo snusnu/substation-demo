@@ -19,12 +19,14 @@ class Demo
   include Concord.new(:dispatcher)
   include Adamantium::Flat
 
-  database = ENV.fetch('DB') {
-    puts "Start the app like this (only postgres supported): DB=my_db rackup config.ru"
+  DEFAULT_DB_NAME = ENV.fetch('DB') {
+    puts "Start like this (do_postgres only): DB=my_db rackup config.ru"
     exit(1)
-  }
+  }.freeze
 
-  DB = DataMapper::Environment.coerce(:default => "postgres://localhost/#{database}")
+  DEFAULT_DB_URI = "postgres://localhost/#{DEFAULT_DB_NAME}".freeze
+
+  DB = DataMapper::Environment.coerce(:default => DEFAULT_DB_URI)
 
   def call(name, input = nil)
     @dispatcher.call(name, input)
