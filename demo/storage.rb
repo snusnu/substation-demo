@@ -4,8 +4,8 @@ class Demo
     include Equalizer.new(:db)
     include Models
 
-    INSERT_PERSON_DDL = <<-SQL
-      INSERT INTO "people" ("name") VALUES (?)
+    INSERT_PERSON_STMT = <<-SQL
+      INSERT INTO "people" ("name") VALUES (?) RETURNING "id"
     SQL
 
     attr_reader :db
@@ -24,15 +24,22 @@ class Demo
     end
 
     def insert_person(person)
-      insert(INSERT_PERSON_DDL, person.name)
+      person.update(:id => execute(INSERT_PERSON_STMT, person.name))
     end
 
     private
 
-    def insert(ddl, *args)
-      connection = DataObjects::Connection.new(@uri)
-      command = connection.create_command(ddl)
-      command.execute_non_query(*args)
+    def execute(statement, *bind_values)
+      with_connection do |connection|
+        command = connection.create_command(statement)
+        result = command.execute_non_query(*bind_values)
+        result.insert_id
+      end
+    end
+
+    def with_connection
+      yield connection = DataObjects::Connection.new(@uri)
+    ensure
       connection.close
     end
   end

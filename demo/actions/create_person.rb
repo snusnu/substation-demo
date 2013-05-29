@@ -8,8 +8,7 @@ class Demo
       end
 
       def call
-        db.insert_person(@person)
-        success(@person)
+        success(db.insert_person(@person))
       end
     end
   end
