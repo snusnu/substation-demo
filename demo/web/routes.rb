@@ -52,33 +52,33 @@ class Demo
         html(:new_person)
       end
 
+      post '/person' do
+        result   = json(:create_person)
+        location = result.success? ? '/people' : '/person/new'
+        json_redirect(location, result.output)
+      end
+
       get '/person/:id' do
         html(:load_person, params[:id])
       end
 
-      post '/person' do
-        result = json(:create_person)
-        if result.success?
-          person = result.output
-          redirect("/person/#{person.id}")
-        else
-          result.output
-        end
-      end
-
       private
 
-      def html(action, data = nil)
+      def html(action, data = Undefined)
         Web::HTML.call(action, data).output
       end
 
-      def json(action)
-        Web::JSON.call(action, json_data)
+      def json(action, data = Undefined)
+        Web::JSON.call(action, data.equal?(Undefined) ? json_data : data)
       end
 
       def json_data
         request.body.rewind
         MultiJson.load(request.body.read)
+      end
+
+      def json_redirect(location, data)
+        MultiJson.dump(:location => location, :resource => data)
       end
 
     end

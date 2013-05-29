@@ -19,6 +19,9 @@ class Demo
   include Concord.new(:dispatcher)
   include Adamantium::Flat
 
+  # Useful for default params
+  Undefined = Object.new.freeze
+
   DEFAULT_DB_NAME = ENV.fetch('DB') {
     puts "Start like this (do_postgres only): DB=my_db rackup config.ru"
     exit(1)

@@ -6,6 +6,7 @@ class Demo
 
         LIST_PEOPLE = Substation::Chain.new [
           Actions::LIST_PEOPLE,
+          Wrapper.new(Presenters::People),
           Renderer.new(Web::Views::Person::LIST)
         ]
 
