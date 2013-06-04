@@ -9,10 +9,10 @@ require 'abstract_type'
 require 'aequitas'
 require 'ducktrap'
 require 'anima'
-require 'dm-mapper'
+require 'rom'
 require 'axiom-do-adapter'
 require 'do_postgres'
-require 'data_mapper/support/axiom/adapter/postgres'
+require 'rom/support/axiom/adapter/postgres'
 require 'substation'
 
 class Demo
@@ -29,7 +29,7 @@ class Demo
 
   DEFAULT_DB_URI = "postgres://localhost/#{DEFAULT_DB_NAME}".freeze
 
-  DB = DataMapper::Environment.coerce(:default => DEFAULT_DB_URI)
+  DB = ROM::Environment.coerce(:default => DEFAULT_DB_URI)
 
   def call(name, input = nil)
     @dispatcher.call(name, input)

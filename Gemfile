@@ -15,7 +15,7 @@ gem 'ducktrap',      :git => 'https://github.com/mbj/ducktrap.git'
 gem 'anima',         :git => 'https://github.com/mbj/anima.git'
 gem 'substation',    :path => '../substation'
 
-gem 'dm-mapper',        :git => 'https://github.com/datamapper/dm-mapper.git'
+gem 'rom',              :git => 'https://github.com/rom-rb/rom.git'
 gem 'axiom-do-adapter', :git => 'https://github.com/dkubb/axiom-do-adapter.git'
 gem 'do_postgres'
 
