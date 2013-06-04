@@ -23,8 +23,9 @@ class Demo
 
       class Collection < self
 
-        def self.member(presenter = nil)
-          @member ||= presenter
+        def self.member(presenter = Undefined)
+          return @member if presenter.equal?(Undefined)
+          @member = presenter
         end
 
         alias_method :entries, :data
