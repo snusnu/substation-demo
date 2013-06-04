@@ -12,7 +12,7 @@ class Demo
 
     def initialize(db)
       @db  = db
-      @uri = db.repository(:default).adapter.uri # hack
+      @uri = Demo::DEFAULT_DB_URI
     end
 
     def list_people
