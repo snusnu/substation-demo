@@ -9,12 +9,20 @@ require 'demo/web/sanitizers'
 require 'demo/web/presenters'
 require 'demo/web/serializers'
 require 'demo/web/views'
-require 'demo/web/actions'
-require 'demo/web/actions/html'
-require 'demo/web/actions/json'
 
 class Demo
   module Web
+
+    ENV = Substation::Environment.build do
+      register :evaluate,  Substation::Processor::Evaluator
+      register :call,      Substation::Processor::Pivot
+      register :wrap,      Substation::Processor::Wrapper
+      register :render,    Renderer
+    end
+
+    require 'demo/web/actions'
+    require 'demo/web/actions/html'
+    require 'demo/web/actions/json'
 
     ACTIONS = {
 
@@ -60,6 +68,10 @@ class Demo
 
       get '/person/:id' do
         html(:load_person, params[:id])
+      end
+
+      get '/person/:id/json' do
+        json(:load_person, params[:id]).output
       end
 
       private

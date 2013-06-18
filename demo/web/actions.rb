@@ -3,23 +3,24 @@ class Demo
 
     module Actions
 
-      LIST_PEOPLE = Substation::Chain.new [
-        Pivot.new(Demo::Actions::ListPeople),
-      ]
+      LIST_PEOPLE = Web::ENV.chain do
+        call Demo::Actions::ListPeople
+      end
 
-      NEW_PERSON = Substation::Chain.new [
-        Pivot.new(Demo::Actions::NewPerson),
-      ]
+      NEW_PERSON = Web::ENV.chain do
+        call Demo::Actions::NewPerson
+      end
 
-      LOAD_PERSON = Substation::Chain.new [
-        Pivot.new(Demo::Actions::LoadPerson),
-      ]
+      LOAD_PERSON = Web::ENV.chain do
+        call Demo::Actions::LoadPerson
+      end
 
-      CREATE_PERSON = Substation::Chain.new [
-        Sanitizer.new(Sanitizers::NEW_PERSON),
-        Validator.new(Demo::Validators::NEW_PERSON),
-        Pivot.new(Demo::Actions::CreatePerson),
-      ]
+      CREATE_PERSON = Web::ENV.chain do
+        evaluate Sanitizers::NEW_PERSON
+        evaluate Demo::Validators::NEW_PERSON
+
+        call Demo::Actions::CreatePerson
+      end
 
     end
   end

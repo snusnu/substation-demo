@@ -4,14 +4,12 @@ class Demo
 
       module Json
 
-        LOAD_PERSON = Substation::Chain.new [
-          Actions::LOAD_PERSON,
-          Serializer::JSON::Model.new
-        ]
+        LOAD_PERSON = Web::ENV.chain(Actions::LOAD_PERSON) do
+          use Serializer::JSON::MODEL
+        end
 
-        CREATE_PERSON = Substation::Chain.new [
-          Actions::CREATE_PERSON,
-        ]
+        CREATE_PERSON = Web::ENV.chain(Actions::CREATE_PERSON) do
+        end
 
       end
     end
