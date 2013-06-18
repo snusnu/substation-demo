@@ -15,7 +15,7 @@ gem 'ducktrap',      :git => 'https://github.com/mbj/ducktrap.git'
 gem 'anima',         :git => 'https://github.com/mbj/anima.git'
 gem 'substation',    :git => 'https://github.com/snusnu/substation.git'
 
-gem 'rom-relation',     :git => 'https://github.com/rom-rb/rom-relation.git', :branch => 'pre-mapper-extraction'
+gem 'rom',              :git => 'https://github.com/rom-rb/rom-relation.git', :branch => 'pre-mapper-extraction'
 gem 'axiom-do-adapter', :git => 'https://github.com/dkubb/axiom-do-adapter.git'
 gem 'do_postgres'
 
