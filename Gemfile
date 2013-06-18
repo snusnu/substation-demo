@@ -13,13 +13,13 @@ gem 'concord',       :git => 'https://github.com/mbj/concord.git'
 gem 'vanguard',      :git => 'https://github.com/mbj/vanguard.git'
 gem 'ducktrap',      :git => 'https://github.com/mbj/ducktrap.git'
 gem 'anima',         :git => 'https://github.com/mbj/anima.git'
-gem 'substation',    :path => '../substation'
+gem 'substation',    :git => 'https://github.com/snusnu/substation.git'
 
-gem 'rom',              :git => 'https://github.com/rom-rb/rom-relation.git'
+gem 'rom-relation',     :git => 'https://github.com/rom-rb/rom-relation.git', :branch => 'pre-mapper-extraction'
 gem 'axiom-do-adapter', :git => 'https://github.com/dkubb/axiom-do-adapter.git'
 gem 'do_postgres'
 
 group :development do
-  gem 'devtools', :git => 'https://github.com/datamapper/devtools.git'
+  gem 'devtools', :git => 'https://github.com/rom-rb/devtools.git'
   eval File.read('Gemfile.devtools')
 end
