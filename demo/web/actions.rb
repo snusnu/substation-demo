@@ -3,11 +3,21 @@ class Demo
 
     module Actions
 
+      AUTHENTICATED = Web::ENV.chain do
+        use Authenticator::INSTANCE
+      end
+
+      AUTHORIZED = Web::ENV.chain(AUTHENTICATED) do
+        use Authorizer::INSTANCE
+      end
+
+      # -------------------------------------------
+
       LIST_PEOPLE = Web::ENV.chain do
         call Demo::Actions::ListPeople
       end
 
-      NEW_PERSON = Web::ENV.chain do
+      NEW_PERSON = Web::ENV.chain(AUTHORIZED) do
         call Demo::Actions::NewPerson
       end
 
@@ -15,7 +25,7 @@ class Demo
         call Demo::Actions::LoadPerson
       end
 
-      CREATE_PERSON = Web::ENV.chain do
+      CREATE_PERSON = Web::ENV.chain(AUTHORIZED) do
         evaluate Sanitizers::NEW_PERSON
         evaluate Demo::Validators::NEW_PERSON
 

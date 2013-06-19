@@ -1,6 +1,30 @@
 class Demo
   module Web
 
+    class Authenticator
+      include Substation::Processor::Incoming
+      include Adamantium
+
+      INSTANCE = new
+
+      def call(request)
+        # implement authentication logic
+        request.success(request.input)
+      end
+    end
+
+    class Authorizer
+      include Substation::Processor::Incoming
+      include Adamantium
+
+      INSTANCE = new
+
+      def call(request)
+        # implement authorization logic
+        request.success(request.input)
+      end
+    end
+
     class Serializer
       include Substation::Processor::Outgoing
       include Adamantium
