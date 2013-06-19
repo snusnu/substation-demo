@@ -9,10 +9,10 @@ class Demo
 
         class Model < Serializer
           def call(response)
-            output = response.output
-            data   = output.class.attributes_hash(output)
+            model = response.output
+            hash  = output.class.attributes_hash(model)
 
-            respond_with(response, MultiJson.dump(data))
+            respond_with(response, MultiJson.dump(hash))
           end
         end
 
