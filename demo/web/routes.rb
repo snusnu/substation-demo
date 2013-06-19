@@ -61,7 +61,7 @@ class Demo
       end
 
       post '/person' do
-        result   = json(:create_person)
+        result   = json(:create_person, json_data)
         location = result.success? ? '/people' : '/person/new'
         json_redirect(location, result.output)
       end
@@ -71,7 +71,7 @@ class Demo
       end
 
       get '/person/:id/json' do
-        json(:load_person, params[:id]).output
+        json(:load_person).output
       end
 
       private
@@ -81,7 +81,7 @@ class Demo
       end
 
       def json(action, data = Undefined)
-        Web::JSON.call(action, data.equal?(Undefined) ? json_data : data)
+        Web::JSON.call(action, data.equal?(Undefined) ? params : data)
       end
 
       def json_data
