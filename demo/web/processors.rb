@@ -3,6 +3,7 @@ class Demo
 
     class Serializer
       include Substation::Processor::Outgoing
+      include Adamantium
 
       module JSON
 
