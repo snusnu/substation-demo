@@ -22,6 +22,19 @@ class Demo
         anima_load(Models::Person)
       end
 
+      LOAD_PERSON = Ducktrap.build do
+        primitive(Hash)
+        hash_transform do
+          fetch_key('id') do
+            primitive(String)
+            dump_key(:id)
+          end
+        end
+        custom do
+          forward { |input| input[:id].to_i }
+          inverse { |input| { :id => input.to_s } }
+        end
+      end
     end
   end
 end

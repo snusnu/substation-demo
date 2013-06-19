@@ -22,6 +22,8 @@ class Demo
       end
 
       LOAD_PERSON = Web::ENV.chain do
+        evaluate Sanitizers::LOAD_PERSON
+
         call Demo::Actions::LoadPerson
       end
 

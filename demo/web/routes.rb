@@ -67,7 +67,7 @@ class Demo
       end
 
       get '/person/:id' do
-        html(:load_person, params[:id])
+        html(:load_person)
       end
 
       get '/person/:id/json' do
@@ -76,8 +76,8 @@ class Demo
 
       private
 
-      def html(action, data = Undefined)
-        Web::HTML.call(action, data).output
+      def html(action)
+        Web::HTML.call(action, params).output
       end
 
       def json(action, data = Undefined)
