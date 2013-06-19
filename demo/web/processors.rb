@@ -30,6 +30,7 @@ class Demo
     class Renderer
       include Substation::Processor::Outgoing
       include Concord.new(:handler)
+      include Adamantium::Flat
 
       def call(response)
         respond_with(response, Mustache.render(handler, response.output))
